@@ -1,0 +1,69 @@
+#region TILES
+				   public NativeArray<int> tileNeighbors; // this one is hardcoded in lua
+        [VAR_Tile] public NativeArray<Color32> tileColors;
+        [VAR_Tile] public NativeArray<float> tileElevations;
+        [VAR_Tile] public NativeArray<float> tileElevationSeeds;
+        [VAR_Tile] public NativeArray<float> tileRugosity;
+        [VAR_Tile] public NativeArray<float> tileColatitudes;
+        [VAR_Tile] public NativeArray<float> tileMinusLongitudes;
+
+        #region Logic and Debug Variables
+        [VAR_Tile] public NativeArray<Color32> tileDemianDebugColors;
+        [VAR_Tile] public NativeArray<Color32> tileCalaDebugColors;
+
+        [VAR_Tile] public NativeArray<float> tileDebugValues;
+        [VAR_Tile] public NativeArray<float> tileTempValues1;
+        [VAR_Tile] public NativeArray<float> tileTempValues2;
+        [VAR_Tile] public NativeArray<float> tileTempValues3;
+        [VAR_Tile] public NativeArray<float> tileTempValues4;
+        [VAR_Tile] public NativeArray<float> tileTempValues5;
+        [VAR_Tile] public NativeArray<int> tileTempValues6;
+        [VAR_Tile] public NativeArray<int> tileTempValues7;
+        [VAR_Tile] public NativeArray<int> tileTempValues8;
+        [VAR_Tile] public NativeArray<int> tileTempValues9;
+        [VAR_Tile] public NativeArray<int> tileTempValues10;
+        [VAR_Tile] public NativeArray<bool> tileTempBool1;
+        [VAR_Tile] public NativeArray<bool> tileTempBool2;
+        [VAR_Tile] public NativeArray<bool> tileTempBool3;
+        #endregion
+		[VAR_Tile] public NativeArray<TERRAIN_TYPES> tileTerrainTypes;
+        [VAR_Tile] public NativeArray<bool> tileIsLand;
+
+        #region Soil Variables
+        [VAR_Tile] public NativeArray<short> tileMineralRichness; // How much minerals in the soil influence fertility of the soil
+        [VAR_Tile] public NativeArray<short> tileSoilOrganics; // How much organics are in the tile, which influence aggragate stability and fertility
+        [VAR_Tile] public NativeArray<short> tileClay;
+        [VAR_Tile] public NativeArray<short> tileSilt;
+        [VAR_Tile] public NativeArray<short> tileSand;
+        [VAR_Tile] public NativeArray<short> tileWaterTable;
+        #endregion
+        
+        [VAR_Tile] public NativeArray<short> tileClimateCellXs;
+        [VAR_Tile] public NativeArray<short> tileClimateCellYs;
+
+        [VAR_Tile] public NativeArray<short> tileVolcanicActivity;
+        [VAR_Tile] public NativeArray<byte> tileTectonicPlate;
+        [VAR_Tile] public NativeArray<ROCK_TYPE> tileRockTypes;
+ 
+        [VAR_Tile] public NativeArray<float> tileHumJans;
+        [VAR_Tile] public NativeArray<float> tileHumJuls;
+        [VAR_Tile] public NativeArray<float> tileTempJans;
+        [VAR_Tile] public NativeArray<float> tileTempJuls;    
+        [VAR_Tile] public NativeArray<float> tileRainJans;
+        [VAR_Tile] public NativeArray<float> tileRainJuls;
+        [VAR_Tile] public NativeArray<float> tileWindJan;
+        [VAR_Tile] public NativeArray<float> tileWindJuls;
+             
+        [VAR_Tile] public NativeArray<float> tileWaterMovements;
+             
+        [VAR_Tile] public NativeArray<ushort> tileProvinces;
+        [VAR_Tile] public NativeArray<byte> tileTectonic;
+
+        [VAR_Tile] public NativeArray<sbyte> tileResources;
+        [VAR_Tile] public NativeArray<int> tileWaterbody;
+        //public NativeArray<ushort> tileCountry; -- was replaced by tileProvinces -- Cal, 2019-07-19
+
+        #region Ocean Elevation
+        [VAR_Tile] public NativeArray<byte> tileFlags;
+        [VAR_Tile] public NativeArray<bool> tileTrenchMembers;
+        #endregion
