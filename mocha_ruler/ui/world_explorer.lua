@@ -6,6 +6,20 @@ function myMochaFunctionOWO()
 	myMochaText = Spawn(lgo.textField, ui)
 	color_blue = Color32(0, 0, 255, 255)
 	color_red = Color32(255, 0, 0, 255)
+
+	-- paint
+	paintMode = false
+	paint_button = Spawn(lgo.textButton, ui)
+	SetCode([[toggle_paint()]], paint_button)
+	Reorient_TopRight(paint_button)
+	Move(-5, -100, paint_button)
+	Resize(100, 25, paint_button)
+	SetTextField("Paint Mode", paint_button)
+	AddTooltip([[
+		function get_tooltip()
+			return "Paint SotEworld~!"
+		end
+	]], paint_button)
 end
 
 -- mocha 2019 aug 03
@@ -13,6 +27,10 @@ end
 function on_tile_left_clicked()
 	log("TILE LEFT-CLICKED")
 	leftTileID = world.selectedTileID
+	if paintMode then
+		world.tileCalaDebugColors[leftTileID] = color_red
+		return world.UpdateMapMode(mapModes.DEBUG_COLOR_2)
+	end
 	-- highlight
 	for _, dotTileID in pairs(neighbors(leftTileID)) do
 		world.tileCalaDebugColors[dotTileID] = color_blue
@@ -35,6 +53,10 @@ function on_tile_right_clicked()
 	end
 	world.UpdateMapMode(mapModes.DEBUG_COLOR_2)
 	-- log(currentDistance)
+end
+
+function toggle_paint()
+	paintMode = not paintMode
 end
 
 local foo = on_world_explorer_loaded
