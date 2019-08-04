@@ -126,6 +126,23 @@ function myMochaFunctionOWO()
 		end
 	]], button_9)
 
+	-- div
+	button_div = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem - 1] = mem[#mem - 1] / mem[#mem]
+		table.remove(mem, #mem)
+		refreshCalc()
+	]], button_div)
+	Reorient_TopLeft(button_div)
+	Move(60, 40, button_div)
+	Resize(20, 20, button_div)
+	SetTextField("/", button_div)
+	AddTooltip([[
+		function get_tooltip()
+			return "Division"
+		end
+	]], button_div)
+
 	-- Clear
 	button_clear = Spawn(lgo.textButton, ui)
 	SetCode([[
