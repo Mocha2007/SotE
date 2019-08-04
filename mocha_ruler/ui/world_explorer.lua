@@ -10,6 +10,8 @@ function myMochaFunctionOWO()
 	color_green = Color32(0, 192, 0, 255)
 	color_blue = Color32(0, 0, 255, 255)
 	color_purple = Color32(128, 0, 128, 255)
+	color_white = Color32(255, 255, 255, 255)
+	color_black = Color32(0, 0, 0, 255)
 
 	-- paint
 	paintMode = false
@@ -103,6 +105,32 @@ function myMochaFunctionOWO()
 			return "Calandiel Purple"
 		end
 	]], paint_button_purple)
+
+	-- White
+	paint_button_white = Spawn(lgo.textButton, ui)
+	SetCode([[paintColor = color_white]], paint_button_white)
+	Reorient_TopRight(paint_button_white)
+	Move(-55, -180, paint_button_white)
+	Resize(50, 20, paint_button_white)
+	SetTextField("White", paint_button_white)
+	AddTooltip([[
+		function get_tooltip()
+			return "Demian Blanket White"
+		end
+	]], paint_button_white)
+
+	-- Black
+	paint_button_black = Spawn(lgo.textButton, ui)
+	SetCode([[paintColor = color_black]], paint_button_black)
+	Reorient_TopRight(paint_button_black)
+	Move(-5, -180, paint_button_black)
+	Resize(50, 20, paint_button_black)
+	SetTextField("Black", paint_button_black)
+	AddTooltip([[
+		function get_tooltip()
+			return "Gnoll Black"
+		end
+	]], paint_button_black)
 end
 
 -- mocha 2019 aug 03
@@ -145,6 +173,14 @@ end
 
 function toggle_paint()
 	paintMode = not paintMode
+	paint_button_red.SetActive(paintMode)
+	paint_button_orange.SetActive(paintMode)
+	paint_button_yellow.SetActive(paintMode)
+	paint_button_green.SetActive(paintMode)
+	paint_button_blue.SetActive(paintMode)
+	paint_button_purple.SetActive(paintMode)
+	paint_button_white.SetActive(paintMode)
+	paint_button_black.SetActive(paintMode)
 end
 
 local foo = on_world_explorer_loaded
