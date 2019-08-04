@@ -198,6 +198,79 @@ function myMochaCalcOWO()
 		end
 	]], button_6)
 
+	-- mul
+	button_mul = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem - 1] = mem[#mem - 1] * mem[#mem]
+		table.remove(mem, #mem)
+		refreshCalc()
+	]], button_mul)
+	Reorient_TopLeft(button_mul)
+	Move(60, -80, button_mul)
+	Resize(20, 20, button_mul)
+	SetTextField("*", button_mul)
+	AddTooltip([[
+		function get_tooltip()
+			return "Multiplication"
+		end
+	]], button_mul)
+
+	-- 1
+	button_1 = Spawn(lgo.textButton, ui)
+	SetCode([[keypadNum(1)]], button_1)
+	Reorient_TopLeft(button_1)
+	Move(0, -100, button_1)
+	Resize(20, 20, button_1)
+	SetTextField("1", button_1)
+	AddTooltip([[
+		function get_tooltip()
+			return "One"
+		end
+	]], button_1)
+
+	-- 2
+	button_2 = Spawn(lgo.textButton, ui)
+	SetCode([[keypadNum(2)]], button_2)
+	Reorient_TopLeft(button_2)
+	Move(20, -100, button_2)
+	Resize(20, 20, button_2)
+	SetTextField("2", button_2)
+	AddTooltip([[
+		function get_tooltip()
+			return "Two"
+		end
+	]], button_2)
+
+	-- 3
+	button_3 = Spawn(lgo.textButton, ui)
+	SetCode([[keypadNum(3)]], button_3)
+	Reorient_TopLeft(button_3)
+	Move(40, -100, button_3)
+	Resize(20, 20, button_3)
+	SetTextField("3", button_3)
+	AddTooltip([[
+		function get_tooltip()
+			return "Three"
+		end
+	]], button_3)
+
+	-- sub
+	button_sub = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem - 1] = mem[#mem - 1] - mem[#mem]
+		table.remove(mem, #mem)
+		refreshCalc()
+	]], button_sub)
+	Reorient_TopLeft(button_sub)
+	Move(60, -100, button_sub)
+	Resize(20, 20, button_sub)
+	SetTextField("-", button_sub)
+	AddTooltip([[
+		function get_tooltip()
+			return "Subtraction"
+		end
+	]], button_sub)
+
 	-- Enter
 	button_enter = Spawn(lgo.textButton, ui)
 	SetCode([[
