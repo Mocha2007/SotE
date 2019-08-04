@@ -17,6 +17,8 @@ function myMochaFunctionOWO()
 
 	-- paint
 	paintMode = false
+	brushMode = false
+	brushRadius = 1
 	paintColor = color_red
 	paint_button = Spawn(lgo.textButton, ui)
 	SetCode([[toggle_paint()]], paint_button)
@@ -29,6 +31,57 @@ function myMochaFunctionOWO()
 			return "Paint SotEworld~!"
 		end
 	]], paint_button)
+
+	-- brush mode
+	brushSizeText = Spawn(lgo.textField, ui)
+	Reorient_TopRight(brushSizeText)
+	Move(-155, -140, brushSizeText)
+	Resize(25, 20, brushSizeText)
+	SetTextField(brushRadius, brushSizeText)
+
+	brush_button = Spawn(lgo.textButton, ui)
+	SetCode([[brushMode = not brushMode]], brush_button)
+	Reorient_TopRight(brush_button)
+	Move(-105, -120, brush_button)
+	Resize(50, 20, brush_button)
+	SetTextField("Brush Mode", brush_button)
+	AddTooltip([[
+		function get_tooltip()
+			return "Paint Blobs"
+		end
+	]], brush_button)
+
+	-- brush mode INC
+	brush_button_plus = Spawn(lgo.textButton, ui)
+	SetCode([[
+		brushRadius = brushRadius + 1
+		SetTextField(brushRadius, brushSizeText)
+	]], brush_button_plus)
+	Reorient_TopRight(brush_button_plus)
+	Move(-105, -140, brush_button_plus)
+	Resize(25, 20, brush_button_plus)
+	SetTextField("+", brush_button_plus)
+	AddTooltip([[
+		function get_tooltip()
+			return "Increase Brush Size"
+		end
+	]], brush_button_plus)
+
+	-- brush mode DEC
+	brush_button_minus = Spawn(lgo.textButton, ui)
+	SetCode([[
+		brushRadius = brushRadius - 1
+		SetTextField(brushRadius, brushSizeText)
+	]], brush_button_minus)
+	Reorient_TopRight(brush_button_minus)
+	Move(-130, -140, brush_button_minus)
+	Resize(25, 20, brush_button_minus)
+	SetTextField("-", brush_button_minus)
+	AddTooltip([[
+		function get_tooltip()
+			return "Decrease Brush Size"
+		end
+	]], brush_button_minus)
 
 	-- Red
 	paint_button_red = Spawn(lgo.textButton, ui)
@@ -167,7 +220,13 @@ function on_tile_left_clicked()
 	log("TILE LEFT-CLICKED")
 	leftTileID = world.selectedTileID
 	if paintMode then
-		world.tileCalaDebugColors[leftTileID] = paintColor
+		if brushMode then
+			for _, dotTileID in pairs(neighbors_in_radius(leftTileID, brushRadius)) do
+				world.tileCalaDebugColors[dotTileID] = paintColor
+			end
+		else
+			world.tileCalaDebugColors[leftTileID] = paintColor
+		end
 		return world.UpdateMapMode(mapModes.DEBUG_COLOR_2)
 	end
 	-- highlight
@@ -201,6 +260,10 @@ end
 
 function toggle_paint()
 	paintMode = not paintMode
+	brush_button.SetActive(paintMode)
+	brushSizeText.SetActive(paintMode)
+	brush_button_plus.SetActive(paintMode)
+	brush_button_minus.SetActive(paintMode)
 	paint_button_red.SetActive(paintMode)
 	paint_button_orange.SetActive(paintMode)
 	paint_button_yellow.SetActive(paintMode)

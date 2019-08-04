@@ -34,6 +34,17 @@ function neighbors(tileID)
 	return table.slice(world.tileNeighbors, 6*tileID, 6*tileID+5)
 end
 
+function neighbors_in_radius(tileID, radius)
+	if radius <= 1 then
+		return neighbors(tileID)
+	end
+	local a = neighbors_in_radius(tileID, radius-1)
+	for _, cell in pairs(neighbors_in_radius(tileID, radius-1)) do
+		table.add(a, neighbors(cell))
+	end
+	return a
+end
+
 function tile_coords(tileID)
 	local latitude = math.pi/2 - world.tileColatitudes[tileID]
 	local longitude = -world.tileMinusLongitudes[tileID]
@@ -68,6 +79,13 @@ function tile_neighbor_closest_to(tile1ID, tile2ID)
 end
 
 -- men
+
+-- in-place concatenation
+function table.add(a, b)
+	for _, v in pairs(b) do
+		table.insert(a, v)
+	end
+end
 
 -- https://stackoverflow.com/a/24823383/2579798
 function table.slice(tbl, first, last, step)
