@@ -38,6 +38,22 @@ function myMochaFunctionOWO()
 		end
 	]], button_sqrt)
 
+	-- square
+	button_square = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem] = mem[#mem]^2
+		refreshCalc()
+	]], button_square)
+	Reorient_TopLeft(button_square)
+	Move(40, 20, button_square)
+	Resize(20, 20, button_square)
+	SetTextField("S", button_square)
+	AddTooltip([[
+		function get_tooltip()
+			return "Square"
+		end
+	]], button_square)
+
 	-- 7
 	button_7 = Spawn(lgo.textButton, ui)
 	SetCode([[keypadNum(7)]], button_7)
