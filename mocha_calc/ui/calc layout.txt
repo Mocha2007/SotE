@@ -1,4 +1,4 @@
-~ R S P L
+~ R S ^ L
 7 8 9 / CLS
 4 5 6 * CLS
 1 2 3 - =
@@ -7,7 +7,7 @@
 ~ -> sign
 R -> sqrt
 S -> square
-P -> pow
+^ -> pow
 L -> ln
 
 \ -> swap top two values in stack

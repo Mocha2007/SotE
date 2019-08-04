@@ -54,6 +54,23 @@ function myMochaFunctionOWO()
 		end
 	]], button_square)
 
+	-- pow
+	button_pow = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem - 1] = mem[#mem - 1] ^ mem[#mem]
+		table.remove(mem, #mem)
+		refreshCalc()
+	]], button_pow)
+	Reorient_TopLeft(button_pow)
+	Move(60, 20, button_pow)
+	Resize(20, 20, button_pow)
+	SetTextField("^", button_pow)
+	AddTooltip([[
+		function get_tooltip()
+			return "Exponentiation"
+		end
+	]], button_pow)
+
 	-- 7
 	button_7 = Spawn(lgo.textButton, ui)
 	SetCode([[keypadNum(7)]], button_7)
