@@ -31,7 +31,7 @@ function line_between(tile1ID, tile2ID)
 end
 
 function neighbors(tileID)
-	return table.slice(world.tileNeighbors, 6*tileID, 6*tileID+6)
+	return table.slice(world.tileNeighbors, 6*tileID, 6*tileID+5)
 end
 
 function tile_coords(tileID)

@@ -13,6 +13,11 @@ end
 function on_tile_left_clicked()
 	log("TILE LEFT-CLICKED")
 	leftTileID = world.selectedTileID
+	-- highlight
+	for _, dotTileID in pairs(neighbors(leftTileID)) do
+		world.tileCalaDebugColors[dotTileID] = color_blue
+	end
+	world.UpdateMapMode(mapModes.DEBUG_COLOR_2)
 end
 
 function on_tile_right_clicked()
