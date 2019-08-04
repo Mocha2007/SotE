@@ -12,6 +12,8 @@ function myMochaFunctionOWO()
 	color_purple = Color32(128, 0, 128, 255)
 	color_white = Color32(255, 255, 255, 255)
 	color_black = Color32(0, 0, 0, 255)
+	color_grey = Color32(128, 128, 128, 255)
+	color_brown = Color32(128, 64, 0, 255)
 
 	-- paint
 	paintMode = false
@@ -131,6 +133,32 @@ function myMochaFunctionOWO()
 			return "Gnoll Black"
 		end
 	]], paint_button_black)
+
+	-- Grey
+	paint_button_grey = Spawn(lgo.textButton, ui)
+	SetCode([[paintColor = color_grey]], paint_button_grey)
+	Reorient_TopRight(paint_button_grey)
+	Move(-55, -200, paint_button_grey)
+	Resize(50, 20, paint_button_grey)
+	SetTextField("Grey", paint_button_grey)
+	AddTooltip([[
+		function get_tooltip()
+			return "Dwarven Cavern Grey"
+		end
+	]], paint_button_grey)
+
+	-- Brown
+	paint_button_brown = Spawn(lgo.textButton, ui)
+	SetCode([[paintColor = color_brown]], paint_button_brown)
+	Reorient_TopRight(paint_button_brown)
+	Move(-5, -200, paint_button_brown)
+	Resize(50, 20, paint_button_brown)
+	SetTextField("Brown", paint_button_brown)
+	AddTooltip([[
+		function get_tooltip()
+			return "Vermen Feces Brown"
+		end
+	]], paint_button_brown)
 end
 
 -- mocha 2019 aug 03
@@ -181,6 +209,8 @@ function toggle_paint()
 	paint_button_purple.SetActive(paintMode)
 	paint_button_white.SetActive(paintMode)
 	paint_button_black.SetActive(paintMode)
+	paint_button_grey.SetActive(paintMode)
+	paint_button_brown.SetActive(paintMode)
 end
 
 local foo = on_world_explorer_loaded
