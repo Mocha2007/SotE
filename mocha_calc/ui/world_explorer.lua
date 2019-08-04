@@ -100,6 +100,32 @@ function myMochaFunctionOWO()
 		end
 	]], button_7)
 
+	-- 8
+	button_8 = Spawn(lgo.textButton, ui)
+	SetCode([[keypadNum(8)]], button_8)
+	Reorient_TopLeft(button_8)
+	Move(20, 40, button_8)
+	Resize(20, 20, button_8)
+	SetTextField("8", button_8)
+	AddTooltip([[
+		function get_tooltip()
+			return "Eight"
+		end
+	]], button_8)
+
+	-- 9
+	button_9 = Spawn(lgo.textButton, ui)
+	SetCode([[keypadNum(9)]], button_9)
+	Reorient_TopLeft(button_9)
+	Move(40, 40, button_9)
+	Resize(20, 20, button_9)
+	SetTextField("9", button_9)
+	AddTooltip([[
+		function get_tooltip()
+			return "Nine"
+		end
+	]], button_9)
+
 	-- Clear
 	button_clear = Spawn(lgo.textButton, ui)
 	SetCode([[
