@@ -35,12 +35,16 @@ function neighbors(tileID)
 end
 
 function neighbors_in_radius(tileID, radius)
-	if radius <= 1 then
-		return neighbors(tileID)
+	if radius <= 0 then
+		return {tileID}
 	end
 	local a = neighbors_in_radius(tileID, radius-1)
-	for _, cell in pairs(neighbors_in_radius(tileID, radius-1)) do
-		table.add(a, neighbors(cell))
+	for _, a_n in pairs(neighbors_in_radius(tileID, radius-1)) do
+		for _, cell in pairs(neighbors(a_n)) do
+			if not table.contains(a, cell) then
+				table.insert(a, cell)
+			end
+		end
 	end
 	return a
 end
@@ -80,11 +84,13 @@ end
 
 -- men
 
--- in-place concatenation
-function table.add(a, b)
-	for _, v in pairs(b) do
-		table.insert(a, v)
+function table.contains(t, v)
+	for _, i in pairs(t) do
+		if i == v then
+			return true
+		end
 	end
+	return false
 end
 
 -- https://stackoverflow.com/a/24823383/2579798
