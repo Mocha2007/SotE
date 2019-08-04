@@ -71,6 +71,22 @@ function myMochaFunctionOWO()
 		end
 	]], button_pow)
 
+	-- log
+	button_log = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem] = math.log(mem[#mem])
+		refreshCalc()
+	]], button_log)
+	Reorient_TopLeft(button_log)
+	Move(80, 20, button_log)
+	Resize(20, 20, button_log)
+	SetTextField("L", button_log)
+	AddTooltip([[
+		function get_tooltip()
+			return "Natural Logarithm"
+		end
+	]], button_log)
+
 	-- 7
 	button_7 = Spawn(lgo.textButton, ui)
 	SetCode([[keypadNum(7)]], button_7)
