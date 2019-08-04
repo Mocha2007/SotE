@@ -57,8 +57,12 @@ function myMochaCalcOWO()
 	-- pow
 	button_pow = Spawn(lgo.textButton, ui)
 	SetCode([[
-		mem[#mem - 1] = mem[#mem - 1] ^ mem[#mem]
-		table.remove(mem, #mem)
+		if 1 < #mem then
+			mem[#mem - 1] = mem[#mem - 1] ^ mem[#mem]
+			table.remove(mem, #mem)
+		else
+			mem[#mem] = 0
+		end
 		refreshCalc()
 	]], button_pow)
 	Reorient_TopLeft(button_pow)
@@ -129,10 +133,14 @@ function myMochaCalcOWO()
 	-- div
 	button_div = Spawn(lgo.textButton, ui)
 	SetCode([[
-		mem[#mem - 1] = mem[#mem - 1] / mem[#mem]
-		table.remove(mem, #mem)
+		if 1 < #mem then
+			mem[#mem - 1] = mem[#mem - 1] / mem[#mem]
+			table.remove(mem, #mem)
+		else
+			mem[#mem] = 0/mem[#mem]
+		end
 		refreshCalc()
-	]], button_div)
+	]], button_div) -- /mem to catch ZeroDivisionErrors
 	Reorient_TopLeft(button_div)
 	Move(60, -60, button_div)
 	Resize(20, 20, button_div)
@@ -201,8 +209,12 @@ function myMochaCalcOWO()
 	-- mul
 	button_mul = Spawn(lgo.textButton, ui)
 	SetCode([[
-		mem[#mem - 1] = mem[#mem - 1] * mem[#mem]
-		table.remove(mem, #mem)
+		if 1 < #mem then
+			mem[#mem - 1] = mem[#mem - 1] * mem[#mem]
+			table.remove(mem, #mem)
+		else
+			mem[#mem] = 0
+		end
 		refreshCalc()
 	]], button_mul)
 	Reorient_TopLeft(button_mul)
@@ -257,8 +269,12 @@ function myMochaCalcOWO()
 	-- sub
 	button_sub = Spawn(lgo.textButton, ui)
 	SetCode([[
-		mem[#mem - 1] = mem[#mem - 1] - mem[#mem]
-		table.remove(mem, #mem)
+		if 1 < #mem then
+			mem[#mem - 1] = mem[#mem - 1] - mem[#mem]
+			table.remove(mem, #mem)
+		else
+			mem[#mem] = -mem[#mem]
+		end
 		refreshCalc()
 	]], button_sub)
 	Reorient_TopLeft(button_sub)
@@ -303,10 +319,12 @@ function myMochaCalcOWO()
 	-- swap
 	button_swap = Spawn(lgo.textButton, ui)
 	SetCode([[
-		local temp = mem[#mem - 1]
-		mem[#mem - 1] = mem[#mem]
-		mem[#mem] = temp
-		refreshCalc()
+		if 1 < #mem then
+			local temp = mem[#mem - 1]
+			mem[#mem - 1] = mem[#mem]
+			mem[#mem] = temp
+			refreshCalc()
+		end
 	]], button_swap)
 	Reorient_TopLeft(button_swap)
 	Move(20, -120, button_swap)
@@ -337,9 +355,11 @@ function myMochaCalcOWO()
 	-- +
 	button_plus = Spawn(lgo.textButton, ui)
 	SetCode([[
-		mem[#mem - 1] = mem[#mem - 1] + mem[#mem]
-		table.remove(mem, #mem)
-		refreshCalc()
+		if 1 < #mem then
+			mem[#mem - 1] = mem[#mem - 1] + mem[#mem]
+			table.remove(mem, #mem)
+			refreshCalc()
+		end
 	]], button_plus)
 	Reorient_TopLeft(button_plus)
 	Move(60, -120, button_plus)
@@ -353,7 +373,11 @@ function myMochaCalcOWO()
 end
 
 function keypadNum(n)
-	mem[#mem] = 10*mem[#mem]+n
+	local addendum = n
+	if mem[#mem] < 0 then
+		addendum = -n
+	end
+	mem[#mem] = 10*mem[#mem] + addendum
 	refreshCalc()
 end
 
