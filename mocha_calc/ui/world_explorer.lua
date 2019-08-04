@@ -287,6 +287,53 @@ function myMochaCalcOWO()
 		end
 	]], button_enter)
 
+	-- 0
+	button_0 = Spawn(lgo.textButton, ui)
+	SetCode([[keypadNum(0)]], button_0)
+	Reorient_TopLeft(button_0)
+	Move(0, -120, button_0)
+	Resize(20, 20, button_0)
+	SetTextField("0", button_0)
+	AddTooltip([[
+		function get_tooltip()
+			return "Zero"
+		end
+	]], button_0)
+
+	-- swap
+	button_swap = Spawn(lgo.textButton, ui)
+	SetCode([[
+		local temp = mem[#mem - 1]
+		mem[#mem - 1] = mem[#mem]
+		mem[#mem] = temp
+		refreshCalc()
+	]], button_swap)
+	Reorient_TopLeft(button_swap)
+	Move(20, -120, button_swap)
+	Resize(20, 20, button_swap)
+	SetTextField("\\", button_swap)
+	AddTooltip([[
+		function get_tooltip()
+			return "Memory Swap"
+		end
+	]], button_swap)
+
+	-- %
+	button_percent = Spawn(lgo.textButton, ui)
+	SetCode([[
+		mem[#mem] = mem[#mem]/100
+		refreshCalc()
+	]], button_percent)
+	Reorient_TopLeft(button_percent)
+	Move(40, -120, button_percent)
+	Resize(20, 20, button_percent)
+	SetTextField("%", button_percent)
+	AddTooltip([[
+		function get_tooltip()
+			return "Percent"
+		end
+	]], button_percent)
+
 	-- +
 	button_plus = Spawn(lgo.textButton, ui)
 	SetCode([[
