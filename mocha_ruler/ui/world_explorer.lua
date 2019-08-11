@@ -3,6 +3,7 @@ require("mods.mocha_syntactic_sugar.mocha")
 function myMochaFunctionOWO()
 	leftCoords = {0, 0}
 	rightCoords = {0, 0}
+	SpawnIndependent(lgo.ticker)
 	myMochaText = Spawn(lgo.textField, ui)
 
 	color_red = Color32(255, 0, 0, 255)
@@ -14,6 +15,9 @@ end
 function on_tile_left_clicked()
 	log("TILE LEFT-CLICKED")
 	leftTileID = world.selectedTileID
+	if not Input.GetKey(KeyCode.LeftControl) then
+		return 'benis'
+	end
 	-- highlight
 	for _, dotTileID in pairs(neighbors(leftTileID)) do
 		world.tileCalaDebugColors[dotTileID] = color_blue
@@ -24,6 +28,9 @@ end
 function on_tile_right_clicked()
 	log("TILE RIGHT-CLICKED")
 	rightTileID = world.selectedTileID
+	if not Input.GetKey(KeyCode.LeftControl) then
+		return 'benis'
+	end
 	this_color = color_red
 	-- disp
 	currentDistance = tostring(round(tile_dist(leftTileID, rightTileID), 3))
