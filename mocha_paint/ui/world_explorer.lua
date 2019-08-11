@@ -1,8 +1,8 @@
 require("mods.mocha_syntactic_sugar.mocha")
 
 function myMochaFunctionOWO()
-    leftCoords = {0, 0}
-    rightCoords = {0, 0}
+	leftCoords = {0, 0}
+	rightCoords = {0, 0}
 	myMochaText = Spawn(lgo.textField, ui)
 	color_red = Color32(255, 0, 0, 255)
 	color_orange = Color32(255, 128, 0, 255)
