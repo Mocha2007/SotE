@@ -246,16 +246,18 @@ function on_tile_right_clicked()
 	end
 	-- disp
 	currentDistance = tostring(round(tile_dist(leftTileID, rightTileID), 3))
-	SetTextField(currentDistance.." km", myMochaText)
 	-- color/log
 	world.tileCalaDebugColors[leftTileID] = this_color
 	world.tileCalaDebugColors[rightTileID] = this_color
+	local tilecount = 0
 
 	for _, lineTileID in pairs(line_between(leftTileID, rightTileID)) do
 		world.tileCalaDebugColors[lineTileID] = this_color
+		tilecount = tilecount + 1
 	end
 	world.UpdateMapMode(mapModes.DEBUG_COLOR_2)
 	-- log(currentDistance)
+	SetTextField(currentDistance.." km\n"..tilecount.." tiles", myMochaText)
 end
 
 function toggle_paint()
